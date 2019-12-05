@@ -19,22 +19,12 @@
         </div>
       </div>
       <div v-if="!loading" class="ui raised segment" id="content">
-        <vue-markdown
-          id="markdown"
-          :source="game.content"
-          v-if="!loading"
-        ></vue-markdown>
+        <vue-markdown id="markdown" :source="game.content" v-if="!loading"></vue-markdown>
         <div class="ui section divider"></div>
         <div id="tags">
           <h1>标签</h1>
           <div class="ui labels">
-            <span
-              v-for="tag in game.tags.split('/')"
-              :key="tag"
-              class="ui label"
-            >
-              {{ tag }}
-            </span>
+            <span v-for="tag in game.tag.split('/')" :key="tag" class="ui label">{{ tag }}</span>
           </div>
         </div>
         <br />
@@ -53,14 +43,28 @@ export default {
   components: { VueMarkdown },
   methods: {
     async loadDeatil() {
-      const game = await this.$api.get(
-        `/game/index/api/view/${this.$route.params.id}`
-      );
+      function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(";");
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i].trim();
+          if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+      }
+      let jwt = getCookie("token");
+      const game = await this.$api.get(`/archive/${this.$route.params.id}`, {
+        headers: {
+          Authorization: "Bearer " + jwt
+        }
+      });
       this.game = game.data;
+      console.log(this.game);
 
-      const link = await this.$api.get(
-        `/game/index/view_primary/${this.$route.params.id}`
-      );
+      // const link = await this.$api.get(
+      //   `/archive/${this.$route.params.id}`
+      // );
+      const link = this.game.primary_content;
       this.downloadLink = link;
       document.title = `${this.game.title} - EroGame`;
       this.loading = false;

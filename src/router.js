@@ -49,7 +49,7 @@ const router = new Router({
       }
     },
     {
-      path: "/admin/create",
+      path: "/create",
       name: "create",
       component() {
         return import(/* webpackChunkName: "create" */ "./views/Create.vue");

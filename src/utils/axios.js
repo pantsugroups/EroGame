@@ -1,7 +1,7 @@
 import axios from "axios";
 import Qs from "qs";
 
-const API = "https://api.ero.ink/";
+const API = "https://api.ero.ink/api/v1/";
 const api = axios.create({
   transformRequest: [
     function(data) {

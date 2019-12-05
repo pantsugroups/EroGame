@@ -43,9 +43,21 @@ export default {
   },
   methods: {
     async load() {
+      
       this.loading = true;
-      let resp = await this.$api.get(`/game/index/api/index/${this.page}`);
+      let resp = await this.$api.get(`/archive/?page=${this.page}`);
+      if(this.$route.query.s != undefined){
+        
+        resp = await this.$api.post(`/search/archive/`,{
+          "keyword":this.$route.query.s,
+        });
+      }
       let data = resp.data;
+      if(data == null){
+        alert("没有找到结果，也许后端炸了也许本来就没有结果");
+        window.location.href='/games';
+        return null;
+      }
       if (data.length === 0) {
         this.totalPage = --this.page;
         this.$router.push({ name: "games", params: { page: this.page } });
