@@ -53,19 +53,26 @@ export default {
         return "";
       }
       let jwt = getCookie("token");
-      const game = await this.$api.get(`/archive/${this.$route.params.id}`, {
+      const game = await this.$api.get(`/archive/${this.$route.params.id}`);
+      this.game = game.data;
+      if(jwt!=""){
+        const login_game = await this.$api.get(`/archive/primary/${this.$route.params.id}`, {
         headers: {
           Authorization: "Bearer " + jwt
         }
       });
-      this.game = game.data;
-      console.log(this.game);
+      var link = login_game.data.primary_content;
+      
+      }else{
+        link = this.game.primary_content;
+      }
 
       // const link = await this.$api.get(
       //   `/archive/${this.$route.params.id}`
       // );
-      const link = this.game.primary_content;
+      
       this.downloadLink = link;
+      
       document.title = `${this.game.title} - EroGame`;
       this.loading = false;
     }

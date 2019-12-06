@@ -12,8 +12,8 @@
         <span class="content" v-if="!isMobile">{{ v.content }}</span>
       </a>
       <div class="right menu">
-        <a @click="$router.push({ name: 'create' })" class="item" v-if="islogin">新建</a>
-        <a class="item">{{username}}</a>
+        <a @click="$router.push({ name: 'create' })" class="item" v-if="islogin">投稿</a>
+        <a class="item" href="https://login.ero.ink/">{{username}}</a>
       </div>
     </div>
   </div>

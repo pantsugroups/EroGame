@@ -4,7 +4,17 @@
     <div class="ui raised segment" id="main">
       <h1>添加游戏</h1>
       <div class="ui section divider"></div>
+      <h2 style="color:red">公告：功能暂时还未实现，请等待更新（咕咕咕~</h2>
       <sui-form id="form">
+        <sui-form-field>
+          <label>上传附件</label>
+            <input
+            type="file"
+            @change="updateCover($event)"
+            accept="image/png, image/jpeg, image/bmp"
+          />
+          
+        </sui-form-field>
         <sui-form-field :required="true">
           <label>游戏名</label>
           <input type="text" name="title" :value="game.title" />
@@ -22,11 +32,12 @@
         </sui-form-field>
         <sui-form-field>
           <label>封面</label>
-          <input
+          <!-- <input
             type="file"
             @change="updateCover($event)"
             accept="image/png, image/jpeg, image/bmp"
-          />
+          /> -->
+          <input type="text" :value="game.cover" />
         </sui-form-field>
         <sui-form-field>
           <label>描述</label>
@@ -85,7 +96,7 @@ export default {
         title: "",
         j_title: "",
         tags: "",
-        cover: null,
+        cover: "",
         description: "",
         download: ""
       },
