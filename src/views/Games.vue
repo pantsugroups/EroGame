@@ -45,7 +45,7 @@ export default {
     async load() {
       
       this.loading = true;
-      let resp = await this.$api.get(`/archive/?page=${this.page}`);
+      let resp = await this.$api.get(`/category/archive/9?page=${this.page}`);
       if(this.$route.query.s != undefined){
         
         resp = await this.$api.post(`/search/archive/`,{

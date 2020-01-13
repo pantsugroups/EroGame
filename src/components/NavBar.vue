@@ -31,12 +31,22 @@ export default {
         games: {
           route: "games",
           icon: "game",
-          content: "游戏库"
+          content: "galgame"
+        },
+        krkr: {
+          route: "krkr",
+          icon: "game",
+          content: "krkr资源"
+        },
+        other: {
+          route: "other",
+          icon: "game",
+          content: "杂货铺"
         },
         category: {
           route: "category",
           icon: "archive",
-          content: "分类 / 搜索"
+          content: "搜索"
         }
       }
     };
@@ -65,26 +75,6 @@ export default {
             Authorization: "Bearer " + jwt
           }
         })
-        // fetch(this.$config.api_base + "user/", {
-        //   methods: "get",
-        //   credentials: "include",
-        //   mode: "cors",
-        //   headers: {
-        //     Authorization: "Bearer " + jwt
-        //   }
-        // })
-        // .then(data => data.json())
-        // .then(data => {
-        //   if (data.status == 0) {
-        //     this.username = this.data.data.user_name;
-        //     return (this.data.islogin = true);
-        //   }
-        //   return (this.data.islogin = false);
-        // })
-        // .catch(data => {
-        //   console.log(data);
-        //   return (this.data.islogin = false);
-        // });
         if(resp.status == 0){
           this.username = resp.data.user_name;
           return true

@@ -8,7 +8,10 @@ import "semantic-ui-css/semantic.min.css";
 // import Vuex from "vuex";
 
 Vue.config.productionTip = false;
-
+import VueSimplemde from 'vue-simplemde'
+import 'simplemde/dist/simplemde.min.css'
+ 
+Vue.component('vue-simplemde', VueSimplemde)
 Vue.use(SuiVue);
 Vue.use(api);
 /* Vue.use(Vuex);
